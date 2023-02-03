@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Image of the day</title>
+    <link rel="stylesheet" href="css/IOD.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Merriweather&family=Mochiy+Pop+One&family=Montserrat:wght@300;400;900&family=Sacramento&family=Ubuntu&display=swap" rel="stylesheet">
+  </head>
+  <body>
+      <div class="header">
+           <h1 id="heading">Nasa Image of the day</h1>
+
+
+      </div>
+      <div class="middile">
+        <h1 class='title'><%= picTitle %></h1>
+        <img class="image" src=<%=image%> alt="astronomical-image">
+        <div class="aboutImage">
+          <h2 class="about-heading"> Image explanation </h2>
+            <p class="about-text"><%= about%></p>
+        </div>
+      </div>
+  </body>
+</html>
