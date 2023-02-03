@@ -2,6 +2,7 @@ const express= require('express');
 const bodyParser=require('body-parser');
 const https=require('https');
 const ejs= require('ejs');
+const keyFile=require(__dirname+'/config.js');
 
 const app= express();
 
@@ -14,7 +15,7 @@ app.set('view engine', 'ejs');
 app.get('/', function(req, res){
   // res.sendFile(__dirname+'/index.html');
 
-  apiKey=config.MY_KEY;
+  apiKey=keyFile.config();
   url= 'https://api.nasa.gov/planetary/apod?api_key='+apiKey;
 
   https.get(url, function(response){
