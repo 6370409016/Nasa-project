@@ -4,4 +4,4 @@
 
 ### Here I am going to show the title, image and explanation of that Image
 
-### And a date option so user can choose any previous date and see that image for that perticular date
+### And add a date option so user can choose any previous date and see that image for that perticular date
