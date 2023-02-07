@@ -36,7 +36,7 @@ app.get('/', function(req, res){
         about:abouImage,
          currentDate:currentDate,
       });
-      console.log(response.statusCode);
+      console.log("statusCode- "+ response.statusCode);
     });
 
 
