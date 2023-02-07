@@ -12,11 +12,17 @@ app.use(express.static('public'));
 
 app.set('view engine', 'ejs');
 
+let inputDate="";
+
 app.get('/', function(req, res){
   // res.sendFile(__dirname+'/index.html');
 
+  const date = new Date();
+ const currentDate= date.toJSON().slice(0,10);
+
+
   apiKey=keyFile.config();
-  url= 'https://api.nasa.gov/planetary/apod?api_key='+apiKey;
+  url= 'https://api.nasa.gov/planetary/apod?api_key='+apiKey+'&date='+inputDate;
 
   https.get(url, function(response){
     response.on("data", function(data){
@@ -28,9 +34,9 @@ app.get('/', function(req, res){
         picTitle:title,
         image:imageUrl,
         about:abouImage,
-
+         currentDate:currentDate,
       });
-
+      console.log(response.statusCode);
     });
 
 
@@ -39,6 +45,10 @@ app.get('/', function(req, res){
 
 });
 
+app.post('/', function(req, res){
+  inputDate=req.body.date;
+  res.redirect('/');
+});
 
 
 app.listen(3000, function(){
