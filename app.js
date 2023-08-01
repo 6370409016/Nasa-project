@@ -1,42 +1,46 @@
-const express= require('express');
-const bodyParser=require('body-parser');
-const https=require('https');
-const ejs= require('ejs');
-const keyFile=require(__dirname+'/config.js');
+const express = require('express');
+const bodyParser = require('body-parser');
+const https = require('https');
+const ejs = require('ejs');
+const keyFile = require(__dirname + '/config.js');
+const dotenv = require('dotenv')
 
-const app= express();
+dotenv.config();
 
-app.use(bodyParser.urlencoded({extended: true}));
+const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
 app.set('view engine', 'ejs');
 
-let inputDate="";
+let inputDate = "";
 
-app.get('/', function(req, res){
+app.get('/', function (req, res) {
   // res.sendFile(__dirname+'/index.html');
 
   const date = new Date();
- const currentDate= date.toJSON().slice(0,10);
+  const currentDate = date.toJSON().slice(0, 10);
 
+  const apikey = process.env.NASA_API_KEY;
+  console.log(apikey);
+  // apiKey=keyFile.config();
+  url = 'https://api.nasa.gov/planetary/apod?api_key=' + apikey + '&date=' + inputDate;
 
-  apiKey=keyFile.config();
-  url= 'https://api.nasa.gov/planetary/apod?api_key='+apiKey+'&date='+inputDate;
-
-  https.get(url, function(response){
-    response.on("data", function(data){
-      const nasaData=JSON.parse(data);
-      const imageUrl= nasaData.hdurl;
-      const title=nasaData.title;
-      const abouImage= nasaData.explanation;
+  https.get(url, function (response) {
+    response.on("data", function (data) {
+      const nasaData = JSON.parse(data);
+      const imageUrl = nasaData.hdurl;
+      const title = nasaData.title;
+      const abouImage = nasaData.explanation;
       res.render("IOD", {
-        picTitle:title,
-        image:imageUrl,
-        about:abouImage,
-         currentDate:currentDate,
+        picTitle: title,
+        image: imageUrl,
+        about: abouImage,
+        currentDate: currentDate,
       });
-      console.log("statusCode- "+ response.statusCode);
+      console.log("statusCode- " + response.statusCode);
     });
 
 
@@ -45,12 +49,12 @@ app.get('/', function(req, res){
 
 });
 
-app.post('/', function(req, res){
-  inputDate=req.body.date;
+app.post('/', function (req, res) {
+  inputDate = req.body.date;
   res.redirect('/');
 });
 
 
-app.listen(3000, function(){
+app.listen(3000, function () {
   console.log('Sever started at port no 3000');
 });

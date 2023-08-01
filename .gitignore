@@ -1,4 +1,4 @@
-config.js
+.env
 node_modules/
 
 # I am hiding my api keys

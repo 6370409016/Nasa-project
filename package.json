@@ -18,6 +18,7 @@
   "homepage": "https://github.com/6370409016/Nasa-project#readme",
   "dependencies": {
     "body-parser": "^1.20.1",
+    "dotenv": "^16.3.1",
     "ejs": "^3.1.8",
     "express": "^4.18.2"
   }
