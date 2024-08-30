@@ -23,7 +23,6 @@ app.get('/', function (req, res) {
   const currentDate = date.toJSON().slice(0, 10);
 
   const apikey = process.env.NASA_API_KEY;
-  console.log(apikey);
   // apiKey=keyFile.config();
   url = 'https://api.nasa.gov/planetary/apod?api_key=' + apikey + '&date=' + inputDate;
 
